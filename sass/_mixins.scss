@@ -1,0 +1,97 @@
+@mixin mobile {}
+
+
+
+@mixin clearfix() {
+  &:after {
+      content: " "; /* Older browser do not support empty content */
+      visibility: hidden;
+      display: block;
+      height: 0;
+      clear: both;
+    }
+}
+
+@mixin tooltip-arrow($size : 25px, $color : #d71414, $side : top, $position : 50%, $rear : 0) {
+    position: relative;
+
+    &:before {
+        content: '';
+        width: 0;
+        height: 0;
+        border: $size solid transparent;
+        position: absolute;
+
+        @if ($side==top) {
+            @if ($rear==0) {
+                left: $position;
+                margin-left: -$size;
+            } @else {
+                right: $position;
+                margin-right: -$size;
+            }
+            top: -$size*2;
+            border-bottom-color: $color;
+        } @else if ($side==bottom) {
+            @if ($rear==0) {
+                left: $position;
+                margin-left: -$size;
+            } @else {
+                right: $position;
+                margin-right: -$size;
+            }
+            bottom: -$size*2;
+            border-top-color: $color;
+        } @else if ($side==left) {
+            @if ($rear==0) {
+                top: $position;
+                margin-top: -$size;
+            } @else {
+                bottom: $position;
+                margin-bottom: -$size;
+            }
+            left: -$size*2;
+            border-right-color: $color;
+        } @else if ($side==right) {
+            @if ($rear==0) {
+                top: $position;
+                margin-top: -$size;
+            } @else {
+                bottom: $position;
+                margin-bottom: -$size;
+            }
+            right: -$size*2;
+            border-left-color: $color;
+        }
+    }
+}
+
+@mixin timeOfDay($dayTime) {
+
+  @if ($dayTime == "morning"){
+    background-color: orange;
+  } @else if ($dayTime == "midday") {
+    background-color: yellow;
+  } @else if ($dayTime == "evening") {
+    background-color: navy;
+  } @else {
+    background-color: black;
+  }
+}
+
+@mixin divColors () {
+  @for $i from 1 through 10 {
+    &:nth-of-type(#{$i}) {
+      height:100px;
+      width:100px;
+      border-radius: 25px;
+      border: 2px solid green;
+      display: inline-block;
+
+        @if ($i % 2 == 0) {
+          background-color: orange;
+      } @else {
+          background-color: blue;
+    }
+
+}}}
